@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodRescue | Reduce Waste, Feed People</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-heart-fill me-2"></i>FOODRESCUE
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#how-it-works">How It Works</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#available-food">Available Food</a></li>
+                </ul>
+                <div class="d-flex gap-2">
+                    <a href="login.html" class="btn btn-outline-success">Login</a>
+                    <a href="register.html" class="btn btn-success">Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="hero-title mb-4">Reduce Food Waste. <span class="text-primary-custom">Feed More People.</span></h1>
+                    <p class="lead mb-5 text-muted">Connect surplus food from restaurants and canteens with NGOs that can put it to good use. Join the movement today.</p>
+                    <div class="d-flex gap-3">
+                        <a href="register.html" class="btn btn-success btn-lg px-4">Donate Food</a>
+                        <a href="login.html" class="btn btn-outline-dark btn-lg px-4">Find Food</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded-4 shadow" alt="Food Donation">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row text-center g-4" id="stats-container">
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h2 class="fw-bold text-success" id="stat-donations">0</h2>
+                        <p class="text-muted mb-0">Donations</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h2 class="fw-bold text-success" id="stat-meals">0</h2>
+                        <p class="text-muted mb-0">Meals Rescued</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h2 class="fw-bold text-success" id="stat-restaurants">0</h2>
+                        <p class="text-muted mb-0">Restaurants</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h2 class="fw-bold text-success" id="stat-ngos">0</h2>
+                        <p class="text-muted mb-0">NGOs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-5 bg-light">
+        <div class="container text-center mb-5">
+            <h2 class="fw-bold">How It Works</h2>
+            <hr class="mx-auto" style="width: 50px; height: 3px; color: var(--primary-color);">
+        </div>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="p-4 text-center">
+                        <div class="display-4 text-success mb-3">01</div>
+                        <h4>Donate Food</h4>
+                        <p class="text-muted">Restaurants post details of surplus food before it goes to waste.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 text-center">
+                        <div class="display-4 text-success mb-3">02</div>
+                        <h4>Request Food</h4>
+                        <p class="text-muted">NGOs browse available food near them and send a quick request.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 text-center">
+                        <div class="display-4 text-success mb-3">03</div>
+                        <h4>Rescue Food</h4>
+                        <p class="text-muted">Once approved, the food is picked up and delivered to those in need.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Food -->
+    <section id="available-food" class="py-5">
+        <div class="container mb-4">
+            <div class="d-flex justify-content-between align-items-end">
+                <div>
+                    <h2 class="fw-bold">Available Food</h2>
+                    <p class="text-muted">Help us rescue these meals today.</p>
+                </div>
+                <a href="login.html" class="btn btn-outline-success mb-3">View All</a>
+            </div>
+            <div class="row g-4" id="featured-food-container">
+                <!-- Dynamic Content from app.js -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="fw-bold mb-3">FOODRESCUE</h4>
+                    <p>Connecting surplus food with those who need it most. Together we can end food waste.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2026 FoodRescue. Made for a better world.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
