@@ -3,141 +3,136 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Restaurant Dashboard | FoodRescue</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>Restaurant Portal | FoodRescue</title>
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="bg-light">
-  <nav class="navbar navbar-dark bg-dark sticky-top">
+  <nav class="navbar bg-dark">
     <div class="container">
-      <a class="navbar-brand text-success" href="#">FOODRESCUE</a>
+      <a class="navbar-brand" href="#">FOODRESCUE</a>
       <div class="d-flex align-items-center">
-        <span class="text-white me-3" id="userDisplayName">Welcome, Restaurant</span>
+        <span class="text-white me-3" id="userDisplayName">Welcome</span>
         <button onclick="logout()" class="btn btn-outline-light btn-sm">Logout</button>
       </div>
     </div>
   </nav>
 
   <div class="container py-4">
-    <div class="row g-3 mb-4">
-      <div class="col-6 col-md-3">
-        <div class="card shadow-sm p-3 text-center">
-          <div class="text-muted small fw-bold">Total Donations</div>
-          <div class="h3 fw-bold" id="stat-total">0</div>
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <div class="card p-3">
+          <p class="small text-muted">Total Posted</p>
+          <h3 id="stat-total">0</h3>
         </div>
       </div>
-      <div class="col-6 col-md-3">
-        <div class="card shadow-sm p-3 text-center text-primary">
-          <div class="text-muted small fw-bold">Available</div>
-          <div class="h3 fw-bold" id="stat-available">0</div>
+      <div class="col-md-3">
+        <div class="card p-3">
+          <p class="small text-muted">Available</p>
+          <h3 id="stat-available">0</h3>
         </div>
       </div>
-      <div class="col-6 col-md-3">
-        <div class="card shadow-sm p-3 text-center text-warning">
-          <div class="text-muted small fw-bold">Pending Requests</div>
-          <div class="h3 fw-bold" id="stat-pending">0</div>
+      <div class="col-md-3">
+        <div class="card p-3">
+          <p class="small text-muted">Pending Requests</p>
+          <h3 id="stat-pending">0</h3>
         </div>
       </div>
-      <div class="col-6 col-md-3">
-        <div class="card shadow-sm p-3 text-center text-success">
-          <div class="text-muted small fw-bold">Rescued</div>
-          <div class="h3 fw-bold" id="stat-rescued">0</div>
+      <div class="col-md-3">
+        <div class="card p-3">
+          <p class="small text-muted">Completed</p>
+          <h3 id="stat-rescued">0</h3>
         </div>
       </div>
     </div>
 
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <h4 class="fw-bold">Manage Food</h4>
-      <button class="btn btn-success" onclick="openAddFoodModal()">+ Add Food Donation</button>
-    </div>
-
-    <div class="nav-pills mb-4">
-      <button class="nav-link active" onclick="showRestaurantTab('myDonations', this)">My Donations</button>
-      <button class="nav-link" onclick="showRestaurantTab('ngoRequests', this)">NGO Requests</button>
-    </div>
-
-    <div class="tab-content">
-      <div class="tab-pane show active" id="myDonations">
-        <div class="row g-4" id="donationsList"></div>
+      <div class="nav-pills">
+        <button class="nav-link-tab active" onclick="showTab('myDonations', this)">My Listings</button>
+        <button class="nav-link-tab" onclick="showTab('ngoRequests', this)">Incoming Requests</button>
       </div>
-      <div class="tab-pane" id="ngoRequests">
-        <div class="card shadow-sm">
-          <div class="table-responsive">
-            <table class="table table-hover">
-              <thead class="table-light">
-                <tr><th>Food Item</th><th>NGO Name</th><th>Quantity</th><th>Status</th><th>Action</th></tr>
-              </thead>
-              <tbody id="requestsTableBody"></tbody>
-            </table>
-          </div>
+      <button class="btn btn-success" onclick="openModal()">+ Add Surplus Food</button>
+    </div>
+
+    <div id="myDonations" class="tab-pane show">
+      <div class="row" id="donationsList"></div>
+    </div>
+
+    <div id="ngoRequests" class="tab-pane">
+      <div class="card">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Food Item</th>
+                <th>NGO</th>
+                <th>Requested Qty</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="requestsTableBody"></tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
 
   <div class="modal" id="addFoodModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Donate Surplus Food</h5>
-          <button type="button" class="btn-close" onclick="closeAddFoodModal()">×</button>
+    <div class="modal-content">
+      <h3 class="mb-3">Donate Surplus Food</h3>
+      <form id="addFoodForm">
+        <div class="mb-2">
+          <label class="form-label">Item Name</label>
+          <input type="text" id="foodName" class="form-control" required>
         </div>
-        <form id="addFoodForm">
-          <div class="modal-body">
-            <div class="mb-3">
-              <label class="form-label">Food Name</label>
-              <input type="text" id="foodName" class="form-control" placeholder="e.g. Mixed Vegetable Curry" required>
-            </div>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label class="form-label">Category</label>
-                <select id="category" class="form-select" required>
-                  <option value="Meals">Meals</option>
-                  <option value="Rice">Rice</option>
-                  <option value="Bread">Bread</option>
-                  <option value="Fruits">Fruits</option>
-                  <option value="Vegetables">Vegetables</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label class="form-label">Food Type</label>
-                <select id="foodType" class="form-select" required>
-                  <option value="VEGETARIAN">Vegetarian</option>
-                  <option value="NON-VEGETARIAN">Non-Vegetarian</option>
-                </select>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label class="form-label">Quantity</label>
-                <input type="number" id="quantity" class="form-control" min="1" required>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label class="form-label">Unit</label>
-                <input type="text" id="unit" class="form-control" placeholder="e.g. Plates / KG" required>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Pickup Location</label>
-              <input type="text" id="location" class="form-control" required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Expiry Date & Time</label>
-              <input type="datetime-local" id="expiry" class="form-control" required>
-            </div>
+        <div class="row">
+          <div class="col-md-6 mb-2">
+            <label class="form-label">Category</label>
+            <select id="category" class="form-select" required>
+              <option value="Meals">Meals</option>
+              <option value="Rice">Rice</option>
+              <option value="Bread">Bread</option>
+              <option value="Snacks">Snacks</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-light" onclick="closeAddFoodModal()">Cancel</button>
-            <button type="submit" class="btn btn-success">Post Donation</button>
+          <div class="col-md-6 mb-2">
+            <label class="form-label">Type</label>
+            <select id="foodType" class="form-select" required>
+              <option value="VEGETARIAN">Vegetarian</option>
+              <option value="NON-VEGETARIAN">Non-Vegetarian</option>
+            </select>
           </div>
-        </form>
-      </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-2">
+            <label class="form-label">Quantity</label>
+            <input type="number" id="quantity" class="form-control" min="1" required>
+          </div>
+          <div class="col-md-6 mb-2">
+            <label class="form-label">Unit</label>
+            <input type="text" id="unit" class="form-control" placeholder="Plates, Servings" required>
+          </div>
+        </div>
+        <div class="mb-2">
+          <label class="form-label">Pickup Location</label>
+          <input type="text" id="location" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Expiry Date & Time</label>
+          <input type="datetime-local" id="expiry" class="form-control" required>
+        </div>
+        <div class="d-flex justify-content-between">
+          <button type="button" class="btn btn-light" onclick="closeModal()">Cancel</button>
+          <button type="submit" class="btn btn-success">Save Item</button>
+        </div>
+      </form>
     </div>
   </div>
 
   <div class="toast-container"></div>
-  <script src="js/storage.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/restaurant.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/restaurant.js"></script>
 </body>
 </html>
