@@ -47,3 +47,4 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error('Data error:', err);
   }
 });
+//js app
