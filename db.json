@@ -1,0 +1,139 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Admin User",
+      "orgName": "FoodRescue HQ",
+      "email": "admin@foodrescue.com",
+      "password": "123",
+      "role": "ADMIN",
+      "phone": "0000000000"
+    },
+    {
+      "id": "2",
+      "name": "Tasty Bites Restaurant",
+      "orgName": "Tasty Bites Restaurant",
+      "email": "tasty@test.com",
+      "password": "123",
+      "role": "RESTAURANT",
+      "phone": "9876543210"
+    },
+    {
+      "id": "3",
+      "name": "Helping Hands NGO",
+      "orgName": "Helping Hands NGO",
+      "email": "helping@test.com",
+      "password": "123",
+      "role": "NGO",
+      "phone": "1234567890"
+    },
+    {
+      "name": "Sumit",
+      "orgName": "abc",
+      "email": "sumitkr2028@gmail.com",
+      "phone": "454465446464",
+      "password": "Sumit565656",
+      "role": "RESTAURANT",
+      "id": "BXOnsVfZxgI"
+    },
+    {
+      "name": "sumit kumar",
+      "orgName": "dfg",
+      "email": "sumitkr7288@gmail.com",
+      "phone": "09973820974",
+      "password": "123456",
+      "role": "RESTAURANT",
+      "id": "H6CTbK1yJXg"
+    },
+    {
+      "name": "sumit kumar",
+      "orgName": "jkk",
+      "email": "sumitkr43194@gmail.com",
+      "phone": "09973820974",
+      "password": "123456",
+      "role": "NGO",
+      "id": "iZ-l9JeD9Yo"
+    }
+  ],
+  "donations": [
+    {
+      "id": "102",
+      "restaurantId": "2",
+      "restaurantName": "Tasty Bites Restaurant",
+      "foodName": "Fresh Sandwiches",
+      "category": "Snacks",
+      "quantity": 15,
+      "unit": "Pieces",
+      "foodType": "VEGETARIAN",
+      "location": "North Side",
+      "expiry": "2026-09-10 18:00",
+      "status": "COMPLETED",
+      "createdAt": "2026-09-10T07:00:00.000Z"
+    },
+    {
+      "id": "103",
+      "restaurantId": "2",
+      "restaurantName": "Ocean Grill",
+      "foodName": "Chicken",
+      "category": "Meals",
+      "quantity": 10,
+      "unit": "Servings",
+      "foodType": "NON-VEGETARIAN",
+      "location": "South Beach",
+      "expiry": "2026-09-10 21:00",
+      "status": "AVAILABLE",
+      "createdAt": "2026-09-10T08:00:00.000Z"
+    },
+    {
+      "restaurantId": "H6CTbK1yJXg",
+      "restaurantName": "dfg",
+      "foodName": "roti",
+      "category": "Meals",
+      "quantity": 100,
+      "unit": "12",
+      "foodType": "VEGETARIAN",
+      "location": ";ljgf",
+      "expiry": "2026-09-11 21:50",
+      "status": "AVAILABLE",
+      "createdAt": "2026-09-11T16:20:13.608Z",
+      "id": "DL1smiWJQck"
+    },
+    {
+      "restaurantId": "BXOnsVfZxgI",
+      "restaurantName": "abc",
+      "foodName": "sdjgh",
+      "category": "Meals",
+      "quantity": 52,
+      "unit": "1",
+      "foodType": "VEGETARIAN",
+      "location": "kdg",
+      "expiry": "2026-09-22 11:19",
+      "status": "AVAILABLE",
+      "createdAt": "2026-09-22T05:49:26.774Z",
+      "id": "Oify5lGGlAQ"
+    }
+  ],
+  "requests": [
+    {
+      "id": "201",
+      "donationId": "102",
+      "ngoId": "3",
+      "ngoName": "Helping Hands NGO",
+      "requestedQuantity": 15,
+      "message": "Distribution at evening shelter.",
+      "status": "COMPLETED",
+      "createdAt": "9/10/2026"
+    },
+    {
+      "donationId": "DL1smiWJQck",
+      "ngoId": "iZ-l9JeD9Yo",
+      "ngoName": "jkk",
+      "requestedQuantity": 100,
+      "message": "",
+      "status": "PENDING",
+      "createdAt": "9/11/2026",
+      "id": "YxXGGSrhjQg"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
