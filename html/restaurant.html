@@ -3,62 +3,136 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register | FoodRescue</title>
+  <title>Restaurant Portal | FoodRescue</title>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="bg-light">
-  <div class="container py-5">
-    <div class="row" style="justify-content: center;">
-      <div class="col-md-6">
-        <div class="text-center mb-3">
-          <a class="navbar-brand" href="index.html">FOODRESCUE</a>
+  <nav class="navbar bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">FOOD RESCUE</a>
+      <div class="d-flex align-items-center">
+        <span class="text-white me-3" id="userDisplayName">Welcome</span>
+        <button onclick="logout()" class="btn btn-outline-light btn-sm">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-4">
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <div class="card p-3">
+          <p class="small text-muted">Total Posted</p>
+          <h3 id="stat-total">0</h3>
         </div>
-        <div class="card p-4">
-          <h3 class="fw-bold mb-3">Create Account</h3>
-          <form id="registerForm">
-            <div class="mb-3">
-              <label class="form-label">Full Name</label>
-              <input type="text" id="regName" class="form-control" required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Organization Name</label>
-              <input type="text" id="regOrg" class="form-control" required>
-            </div>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label class="form-label">Email</label>
-                <input type="email" id="regEmail" class="form-control" required>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label class="form-label">Phone</label>
-                <input type="tel" id="regPhone" class="form-control" required>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label class="form-label">Password</label>
-                <input type="password" id="regPass" class="form-control" required>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label class="form-label">Confirm Password</label>
-                <input type="password" id="regConfirmPass" class="form-control" required>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Account Type</label>
-              <div class="d-flex gap-3">
-                <label><input type="radio" name="role" value="RESTAURANT" checked> Restaurant</label>
-                <label><input type="radio" name="role" value="NGO"> NGO</label>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-success w-100">Register</button>
-          </form>
-          <p class="small text-center mt-3 mb-0">Already registered? <a href="login.html" class="text-success fw-bold">Login</a></p>
+      </div>
+      <div class="col-md-3">
+        <div class="card p-3">
+          <p class="small text-muted">Available</p>
+          <h3 id="stat-available">0</h3>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card p-3">
+          <p class="small text-muted">Pending Requests</p>
+          <h3 id="stat-pending">0</h3>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card p-3">
+          <p class="small text-muted">Completed</p>
+          <h3 id="stat-rescued">0</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div class="nav-pills">
+        <button class="nav-link-tab active" onclick="showTab('myDonations', this)">My Listings</button>
+        <button class="nav-link-tab" onclick="showTab('ngoRequests', this)">Incoming Requests</button>
+      </div>
+      <button class="btn btn-success" onclick="openModal()">+ Add Surplus Food</button>
+    </div>
+
+    <div id="myDonations" class="tab-pane show">
+      <div class="row" id="donationsList"></div>
+    </div>
+
+    <div id="ngoRequests" class="tab-pane">
+      <div class="card">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Food Item</th>
+                <th>NGO</th>
+                <th>Requested Qty</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="requestsTableBody"></tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="modal" id="addFoodModal">
+    <div class="modal-content">
+      <h3 class="mb-3">Donate Surplus Food</h3>
+      <form id="addFoodForm">
+        <div class="mb-2">
+          <label class="form-label">Item Name</label>
+          <input type="text" id="foodName" class="form-control" required>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-2">
+            <label class="form-label">Category</label>
+            <select id="category" class="form-select" required>
+              <option value="Meals">Meals</option>
+              <option value="Rice">Rice</option>
+              <option value="Bread">Bread</option>
+              <option value="Snacks">Snacks</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-2">
+            <label class="form-label">Type</label>
+            <select id="foodType" class="form-select" required>
+              <option value="VEGETARIAN">Vegetarian</option>
+              <option value="NON-VEGETARIAN">Non-Vegetarian</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-2">
+            <label class="form-label">Quantity</label>
+            <input type="number" id="quantity" class="form-control" min="1" required>
+          </div>
+          <div class="col-md-6 mb-2">
+            <label class="form-label">Unit</label>
+            <input type="text" id="unit" class="form-control" placeholder="Plates, Servings" required>
+          </div>
+        </div>
+        <div class="mb-2">
+          <label class="form-label">Pickup Location</label>
+          <input type="text" id="location" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Expiry Date & Time</label>
+          <input type="datetime-local" id="expiry" class="form-control" required>
+        </div>
+        <div class="d-flex justify-content-between">
+          <button type="button" class="btn btn-light" onclick="closeModal()">Cancel</button>
+          <button type="submit" class="btn btn-success">Save Item</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-container"></div>
   <script src="../js/api.js"></script>
   <script src="../js/auth.js"></script>
+  <script src="../js/restaurant.js"></script>
 </body>
 </html>
