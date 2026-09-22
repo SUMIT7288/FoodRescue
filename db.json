@@ -53,6 +53,15 @@
       "password": "123456",
       "role": "NGO",
       "id": "iZ-l9JeD9Yo"
+    },
+    {
+      "name": "Aditya",
+      "orgName": "XYZ",
+      "email": "xxx@gmail.com",
+      "phone": "123456",
+      "password": "Aditya",
+      "role": "RESTAURANT",
+      "id": "zat5LR3Uz_4"
     }
   ],
   "donations": [
