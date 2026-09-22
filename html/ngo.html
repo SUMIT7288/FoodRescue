@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NGO Dashboard | FoodRescue</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-light">
+  <nav class="navbar bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">FOODRESCUE</a>
+      <div class="d-flex align-items-center">
+        <span class="text-white me-3" id="ngoDisplayName">Welcome</span>
+        <button onclick="logout()" class="btn btn-outline-light btn-sm">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-4">
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <div class="card p-3">
+          <p class="small text-muted">Available Meals</p>
+          <h3 id="stat-available-food">0</h3>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card p-3">
+          <p class="small text-muted">My Requests</p>
+          <h3 id="stat-my-requests">0</h3>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card p-3">
+          <p class="small text-muted">Approved</p>
+          <h3 id="stat-approved">0</h3>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card p-3">
+          <p class="small text-muted">Rescued Meals</p>
+          <h3 id="stat-rescued-count">0</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="card p-3 mb-4">
+      <div class="row">
+        <div class="col-md-4">
+          <input type="text" id="searchInput" class="form-control" placeholder="Search food, restaurant...">
+        </div>
+        <div class="col-md-3">
+          <select id="filterCategory" class="form-select">
+            <option value="">All Categories</option>
+            <option value="Meals">Meals</option>
+            <option value="Rice">Rice</option>
+            <option value="Bread">Bread</option>
+            <option value="Snacks">Snacks</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <select id="filterType" class="form-select">
+            <option value="">All Types</option>
+            <option value="VEGETARIAN">Vegetarian</option>
+            <option value="NON-VEGETARIAN">Non-Vegetarian</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-tabs mb-4">
+      <button class="nav-link-tab active" onclick="showTab('browseFood', this)">Browse Food</button>
+      <button class="nav-link-tab" onclick="showTab('myRequestsTab', this)">My Requests</button>
+    </div>
+
+    <div id="browseFood" class="tab-pane show">
+      <div class="row" id="availableFoodGrid"></div>
+    </div>
+
+    <div id="myRequestsTab" class="tab-pane">
+      <div class="card">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Food Item</th>
+                <th>Restaurant</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="ngoRequestsTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="requestModal">
+    <div class="modal-content">
+      <h3 class="mb-2">Request Food</h3>
+      <p class="small text-muted mb-3">Target: <span id="modalResName" class="fw-bold"></span></p>
+      <form id="requestFoodForm">
+        <input type="hidden" id="modalDonationId">
+        <div class="mb-3">
+          <label class="form-label">Requested Quantity</label>
+          <div class="input-group">
+            <input type="number" id="requestQty" class="form-control" min="1" required>
+            <span class="input-group-text" id="modalUnit">Units</span>
+          </div>
+          <p class="small text-muted mt-1">Available: <span id="modalMaxQty"></span></p>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Message</label>
+          <textarea id="requestMsg" class="form-control" rows="2"></textarea>
+        </div>
+        <div class="d-flex justify-content-between">
+          <button type="button" class="btn btn-light" onclick="closeRequestModal()">Cancel</button>
+          <button type="submit" class="btn btn-success">Send Request</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-container"></div>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/ngo.js"></script>
+</body>
+</html>
